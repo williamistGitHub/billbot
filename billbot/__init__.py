@@ -40,4 +40,10 @@ async def on_ready():
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="your life rot away"))
     print("Done!")
 
-client.run(os.environ["BOT_TOKEN"], reconnect=False)
+
+def go():
+    client.run(os.environ["BOT_TOKEN"], reconnect=False)
+
+
+if __name__ == "__main__":
+    go()
