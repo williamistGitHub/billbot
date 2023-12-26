@@ -37,12 +37,15 @@ def process_frame(frame: Image) -> Image:
     frame.thumbnail((165, 165))
 
     # translucency
-    frame.putalpha(125)
+    orig_alpha = frame.getchannel('A')
+    new_alpha = orig_alpha.point(lambda a: a * 0.49)
+    frame.putalpha(new_alpha)
 
     # mask
     frame.paste(0, mask=MASK)
 
     return frame
+
 
 def do(image_bytes: bytes) -> io.BytesIO:
     in_image = Image.open(io.BytesIO(image_bytes))
