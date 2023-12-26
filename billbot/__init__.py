@@ -38,7 +38,8 @@ async def _1984ify(interaction: discord.Interaction, img: discord.Attachment):
     if "image" not in img.content_type:
         await interaction.response.send_message("womp womp (images & gifs only please <3)", ephemeral=True)
         return
-    await interaction.response.send_message(file=discord.File(fp=cmd_1984ify.do(await img.read()), filename='b1ll_w4s_h3r3.gif'))
+    await interaction.response.defer()
+    await interaction.followup.send(file=discord.File(fp=cmd_1984ify.do(await img.read()), filename='b1ll_w4s_h3r3.gif'))
 
 
 @client.event

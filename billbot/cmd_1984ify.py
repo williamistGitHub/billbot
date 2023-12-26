@@ -33,8 +33,8 @@ def process_frame(frame: Image) -> Image:
     elif frame.width < frame.height:
         frame = frame.crop((0, frame.height // 2 - frame.width // 2, frame.width, frame.height // 2 + frame.width // 2))
 
-    # squishy squash
-    frame.thumbnail((165, 165))
+    # squishy squash/stretch
+    frame = frame.resize((165, 165))
 
     # translucency
     orig_alpha = frame.getchannel('A')
