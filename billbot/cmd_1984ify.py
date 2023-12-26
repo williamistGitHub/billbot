@@ -53,8 +53,6 @@ def do(image_bytes: bytes) -> io.BytesIO:
 
         return util.imageToBytesIO(out_image)
     else:
-        print("animated!!!!")
-
         # fancy-schmancy gif stuff
         out_frames = []
         for i in range(in_image.n_frames):
