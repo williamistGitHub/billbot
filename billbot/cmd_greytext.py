@@ -18,7 +18,7 @@ from PIL import Image, ImageFont, ImageDraw
 import textwrap
 import io
 
-FONT = ImageFont.truetype("unifont.otf", size=16)
+FONT = ImageFont.truetype("resources/unifont.otf", size=16)
 
 
 def helper_draw_lines(draw: ImageDraw.ImageDraw, lines: list[str], color: tuple[int, int, int], xy: tuple[int, int]):
