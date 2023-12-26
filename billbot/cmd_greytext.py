@@ -18,6 +18,8 @@ from PIL import Image, ImageFont, ImageDraw
 import textwrap
 import io
 
+import billbot.util as util
+
 FONT = ImageFont.truetype("resources/unifont.otf", size=16)
 
 
@@ -49,8 +51,4 @@ def do(text: str) -> io.BytesIO:
     helper_draw_lines(draw, wrapped_lines, (63, 63, 63), (text_pos[0] + 2, text_pos[1] + 2))
     helper_draw_lines(draw, wrapped_lines, (255, 255, 255), text_pos)
 
-    b = io.BytesIO()
-    image.save(b, "GIF")
-    b.seek(0)
-
-    return b
+    return util.imageToBytesIO(image)

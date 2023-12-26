@@ -17,7 +17,7 @@
 import discord
 import os
 
-from billbot import cmd_greytext
+from billbot import cmd_greytext, cmd_1984ify
 
 intents = discord.Intents.none()
 client = discord.Client(intents=intents)
@@ -30,6 +30,15 @@ async def greytext(interaction: discord.Interaction, text: str):
         await interaction.response.send_message("womp womp (text recieved longer than 2048 characters)", ephemeral=True)
         return
     await interaction.response.send_message(file=discord.File(fp=cmd_greytext.do(text), filename='b1ll_w4s_h3r3.gif'))
+
+
+@tree.command(name="1984ify", description="by george orwell")
+async def _1984ify(interaction: discord.Interaction, img: discord.Attachment):
+    # make sure img is actually an image lol
+    if "image" not in img.content_type:
+        await interaction.response.send_message("womp womp (images & gifs only please <3)", ephemeral=True)
+        return
+    await interaction.response.send_message(file=discord.File(fp=cmd_1984ify.do(await img.read()), filename='b1ll_w4s_h3r3.gif'))
 
 
 @client.event
