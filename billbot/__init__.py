@@ -19,13 +19,14 @@ import os
 import random
 
 from billbot import cmd_greytext, cmd_1984ify
+import billbot.secrets
 
 intents = discord.Intents.none()
 client = discord.Client(intents=intents)
 tree = discord.app_commands.CommandTree(client)
 
 
-@tree.command(guild=discord.Object(id=os.environ["DEV_SERVER"]))
+@tree.command(guild=discord.Object(id=billbot.secrets.DEV_SERVER))
 async def sync(interaction: discord.Interaction):
     await tree.sync()
     await interaction.response.send_message("synced!", ephemeral=True)
@@ -63,7 +64,7 @@ async def on_ready():
 
 
 def go():
-    client.run(os.environ["BOT_TOKEN"], reconnect=False)
+    client.run(billbot.secrets.BOT_TOKEN, reconnect=False)
 
 
 if __name__ == "__main__":

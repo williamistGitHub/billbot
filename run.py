@@ -14,19 +14,9 @@
 #     You should have received a copy of the GNU Affero General Public License
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# this script is ran by the live server to set things up.
+# this script is ran by the live server to make sure the module works.
 # please don't modify!
 
-import os
-
 import billbot
-
-if "BOT_TOKEN" not in os.environ:
-    with open("SECRET_token.txt") as token_file:
-        os.environ["BOT_TOKEN"] = token_file.read()
-
-if "DEV_SERVER" not in os.environ:
-    with open("SECRET_devserv.txt") as id_file:
-        os.environ["DEV_SERVER"] = id_file.read()
 
 billbot.go()
