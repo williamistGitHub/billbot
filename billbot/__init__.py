@@ -16,6 +16,7 @@
 
 import discord
 import os
+import random
 
 from billbot import cmd_greytext, cmd_1984ify
 
@@ -41,6 +42,13 @@ async def _1984ify(interaction: discord.Interaction, img: discord.Attachment):
     await interaction.response.defer()
     await interaction.followup.send(file=discord.File(fp=cmd_1984ify.do(await img.read()), filename='b1ll_w4s_h3r3.gif'))
 
+
+@tree.command(description="roll a virtual die")
+async def diceroll(interaction: discord.Interaction, maximum: int = 6):
+    if maximum < 2:
+        await interaction.response.send_message("womp womp (maximum should be >= 2)", ephemeral=True)
+        return
+    await interaction.response.send_message(str(random.randint(1, maximum)))
 
 @client.event
 async def on_ready():

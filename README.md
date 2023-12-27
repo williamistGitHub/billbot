@@ -16,6 +16,9 @@ generates a greytext image
 ### 1984ify
 puts the supplied image/gif into 1984
 
+### diceroll
+rolls a die, with configurable maximum number
+
 ## development
 for now i just commit to the `main` branch, probably not great
 but meh i'll change it if i need to lol.
