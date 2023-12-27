@@ -25,6 +25,12 @@ client = discord.Client(intents=intents)
 tree = discord.app_commands.CommandTree(client)
 
 
+@tree.command(guild=discord.Object(id=os.environ["DEV_SERVER"]))
+async def sync(interaction: discord.Interaction):
+    await tree.sync()
+    await interaction.response.send_message("synced!", ephemeral=True)
+
+
 @tree.command(description="make a funny")
 async def greytext(interaction: discord.Interaction, text: str):
     if len(text) > 2048:
@@ -52,11 +58,8 @@ async def diceroll(interaction: discord.Interaction, maximum: int = 6):
 
 @client.event
 async def on_ready():
-    print("Syncing slash commands, hold tight.")
-    await tree.sync()
-    print("Setting activity")
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="your life rot away"))
-    print("Done!")
+    print("Ready!")
 
 
 def go():

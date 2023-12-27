@@ -25,4 +25,8 @@ if "BOT_TOKEN" not in os.environ:
     with open("SECRET_token.txt") as token_file:
         os.environ["BOT_TOKEN"] = token_file.read()
 
+if "DEV_SERVER" not in os.environ:
+    with open("SECRET_devserv.txt") as id_file:
+        os.environ["DEV_SERVER"] = id_file.read()
+
 billbot.go()
