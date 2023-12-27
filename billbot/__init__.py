@@ -26,10 +26,15 @@ client = discord.Client(intents=intents)
 tree = discord.app_commands.CommandTree(client)
 
 
-@tree.command(guild=discord.Object(id=billbot.secrets.DEV_SERVER))
+@tree.command()
 async def sync(interaction: discord.Interaction):
+    if interaction.guild_id != billbot.secrets.DEV_SERVER:
+        await interaction.response.send_message("nuh uh", ephemeral=True)
+        return
+
+    await interaction.response.defer(ephemeral=True)
     await tree.sync()
-    await interaction.response.send_message("synced!", ephemeral=True)
+    await interaction.followup.send("synced!")
 
 
 @tree.command(description="make a funny")
